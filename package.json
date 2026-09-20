@@ -1,5 +1,6 @@
 {
   "name": "amazon-clone",
+  "homepage": "https://yash01718.github.io/amazon",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
