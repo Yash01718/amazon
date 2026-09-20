@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone • Online Shopping for Electronics, Apparel & More</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP HEADER NAVBAR -->
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">amazon</span><span class="logo-domain">.in</span>
+            </a>
+            <div class="nav-location">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <span class="nav-line-1">Deliver to Yash</span>
+                    <span class="nav-line-2">Mumbai 400001</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-search">
+            <select class="search-category">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Laptops & Computers</option>
+                <option>Fashion & Apparel</option>
+                <option>Books & Kindle</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search Amazon.in items, electronics, clothing...">
+            <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="nav-right">
+            <div class="nav-item nav-lang">
+                <img src="https://flagcdn.com/w20/in.png" alt="IN Flag">
+                <span>EN</span>
+            </div>
+
+            <div class="nav-item nav-account" id="accountBtn">
+                <span class="nav-line-1" id="userGreeting">Hello, Sign in</span>
+                <span class="nav-line-2">Account & Lists <i class="fas fa-caret-down"></i></span>
+            </div>
+
+            <div class="nav-item nav-orders" id="ordersBtn">
+                <span class="nav-line-1">Returns</span>
+                <span class="nav-line-2">& Orders</span>
+            </div>
+
+            <div class="nav-item nav-cart" id="cartBtn">
+                <div class="cart-icon-wrapper">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <span class="nav-line-2">Cart</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SUB NAVBAR -->
+    <nav class="sub-nav">
+        <ul>
+            <li><a href="#" class="font-weight-bold"><i class="fas fa-bars mr-1"></i> All</a></li>
+            <li><a href="#">Fresh</a></li>
+            <li><a href="#">Amazon Pay</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Today's Deals</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Fashion</a></li>
+            <li><a href="#">Customer Service</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO BANNER CAROUSEL -->
+    <section class="hero-banner">
+        <div class="banner-slide active" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), #eaedd1), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80');">
+            <div class="banner-content">
+                <h2>Prime Day Exclusive Deals</h2>
+                <p>Up to 50% Off on Top Electronics & Smart Devices</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN PRODUCT CATALOG FEED -->
+    <main class="main-container">
+
+        <!-- STATS / PROMO BANNER -->
+        <div class="promo-strip">
+            <span>🎉 Welcome to Amazon Clone! Get 10% Instant Discount on HDFC & ICICI Cards. Code: <strong>AMAZON10</strong></span>
+        </div>
+
+        <!-- PRODUCT GRID -->
+        <h2 class="section-title">Recommended Products for You</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Dynamic products rendered by app.js -->
+        </div>
+
+    </main>
+
+    <!-- SHOPPING CART DRAWER OVERLAY -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-basket"></i> Your Shopping Basket</h3>
+            <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+        </div>
+
+        <div class="cart-items-container" id="cartItemsContainer">
+            <!-- Dynamic Cart Items -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="subtotal-row">
+                <span>Subtotal (<span id="cartTotalItems">0</span> items):</span>
+                <strong class="total-price" id="cartTotalPrice">$0.00</strong>
+            </div>
+            <div class="gift-option">
+                <input type="checkbox" id="giftCheck">
+                <label for="giftCheck">This order contains a gift</label>
+            </div>
+            <button class="proceed-checkout-btn" id="checkoutBtn">Proceed to Buy</button>
+        </div>
+    </aside>
+
+    <!-- PAYMENT MODAL -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fab fa-cc-stripe text-primary"></i> Secure Checkout & Payment</h3>
+                <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="checkout-summary mb-3">
+                    <span>Order Total: <strong id="modalTotalPrice">$0.00</strong></span>
+                </div>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label>Full Shipping Address</label>
+                        <input type="text" class="form-control" value="Yash - Mumbai 400001, India" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Credit / Debit Card Number (Stripe Test)</label>
+                        <input type="text" class="form-control" placeholder="4242 •••• •••• 4242" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Expiry Date</label>
+                            <input type="text" class="form-control" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group half">
+                            <label>CVC</label>
+                            <input type="text" class="form-control" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="pay-btn">Pay Now with Stripe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN IN MODAL -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box login-box">
+            <div class="modal-header">
+                <span class="logo-text text-dark">amazon</span>
+                <button class="close-modal-btn" id="closeLoginBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>Sign in</h4>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email or mobile phone number</label>
+                        <input type="email" id="loginEmail" class="form-control" required placeholder="yash@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="pay-btn">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            Back to top
+        </div>
+        <div class="footer-links">
+            <div>
+                <h4>Get to Know Us</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press Releases</a>
+            </div>
+            <div>
+                <h4>Connect with Us</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+            <div>
+                <h4>Make Money with Us</h4>
+                <a href="#">Sell on Amazon</a>
+                <a href="#">Fulfillment by Amazon</a>
+                <a href="#">Amazon Global Selling</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Amazon Clone • Built with HTML, CSS, JavaScript & Context API</span>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="app.js"></script>
+</body>
+</html>
